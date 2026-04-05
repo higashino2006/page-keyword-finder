@@ -102,6 +102,14 @@ function showStatus(message, type) {
 
 // ページ読み込み時に検索状態を確認
 chrome.storage.local.get(['searchActive', 'searchMode', 'currentPage', 'maxPages', 'currentScrollTop', 'maxScrollTop'], (data) => {
+  // 保存済みの値を入力欄に復元
+  if (data.maxScrollTop !== undefined) {
+    document.getElementById('maxScrollTop').value = data.maxScrollTop;
+  }
+  if (data.maxPages !== undefined) {
+    document.getElementById('maxPages').value = data.maxPages;
+  }
+
   if (data.searchActive) {
     document.getElementById('startSearch').style.display = 'none';
     document.getElementById('stopSearch').style.display = 'block';
